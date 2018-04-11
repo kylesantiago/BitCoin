@@ -1,19 +1,219 @@
-{% load staticfiles %}
+{% load static %}
 <html>
     <head>
 		<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>BitCoin</title>
+		<style>
+			.navbar a {
+				background-color: #FFAD33;
+				color:black;
+				border-radius: 0;
+			}
+			.navbar a.active, .navbar a:hover {
+			  background-color: #FFB84D!important;
+			  color: white!important;
+			}
+			body {
+				background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{% static 'images\Background_img.png' %}')!important;
+				background-position:center top;
+			}
+			.footer {
+			padding: 3rem 0;
+			padding-left: 5rem;
+			padding-right: 5rem;
+			text-align: center;
+			color: black;
+			background-color:#CC7A00;
+			}
+			.footer a {
+			color: black;
+			text-decoration: none;
+			background-color:white;
+			border-radius:4px;
+			padding:10px;
+			}
+			.button {
+			}
+		</style>
     </head>
-    <body>
+    <body onload="init()">
+		<nav class="navbar fixed-top navbar-expand-lg nav-justified">
+			<a class="nav-item nav-link" href="#question1">Question 1</a>
+			<a class="nav-item nav-link" href="#question2">Question 2</a>
+			<a class="nav-item nav-link" href="#question3">Question 3</a>
+			<a class="nav-item nav-link" href="#question4">Question 4</a>
+			<a class="nav-item nav-link" href="#conclusion">Conclusion</a>
+		</nav>
+
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
-				<h1 class="display-4">BitCoin</h1>
-				<p class="lead">a type of digital currency in which encryption techniques are used to regulate the generation of units of currency and verify the transfer of funds, operating independently of a central bank.</p>
+				<h1 class="display-4">What is Bitcoin?</h1>
+				<p class="lead">According to their website, Bitcoin is an innovative payment network and a new kind of money. 
+					Bitcoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the 
+					issuing of bitcoins is carried out collectively by the network. Bitcoin is open-source; its design is public, nobody 
+					owns or controls Bitcoin and everyone can take part. Through many of its unique properties, 
+					Bitcoin allows exciting uses that could not be covered by any previous payment system.
+				</p>
+				<div id = "BitCoinGraph">
+					<iframe scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: static; visibility: visible; display: block; width: 1080px; height: 457px; padding: 0px; border: none; max-width: 100%; min-width: 400px; min-height: 300px; margin-top: 10px; margin-bottom: 10px; float:center;" src="https://charts.bitcoin.com/embed/price"></iframe>
+				</div>
+				<p class = "lead" ><b> Bitcoin Now </b></p>
+				<p> Chart taken from https://charts.bitcoin.com As of April 11, 2018, Bitcoin's price is on a downward trend. 
+					There are many factors that affect this, and we will now look at some of the possible reasons that this maybe the case
 				</p>
 			</div>
 		</div>
-    </body>
+		<a name="question1"></a>
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4">Are there too many competitors in the market that challenge bitcoin?</h1>
+				<p class="lead"> Bitcoin may be the first, but it is not the only crypto currency in the market. The graph below shows that Bitcoin is still leading, but crytpocurrencies like Ethereum or Litecoin are slowly catching up to Bitcoin's market price. 
+					But just how fast is it approaching?</p>
+				</p>
+				<div id="graphTopic" align ="center">
+					{{ graph1|safe }}
+				</div>
+				<button type="button" class = "button" onclick="myFunction()"> More </button>
+				<div class="keyword_data">
+					<div id="graphTopic2" align ="center">
+						{{ graph2|safe }}
+						<p class="lead">Ethereum is actually on a downward trend as well in terms of market price</p>
+						{{ graph3|safe }}
+						<p class="lead">Even Ripple isn't safe from this market crash</p>
+						<p class = "lead" ><b> What does this mean? </b></p>
+						<p> It means that it isn't only Bitcoin, but cryptocurrencies in general are experiencing some sort of Market Crash. 
+							From this we can conclude that competition isn't a reason that Bitcoin is currently struggling
+						</p>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<a name="question2"></a>
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4">What about real world currency?</h1>
+				<p class="lead">Let's see how bitcoin then compares to real world currency. Look at the US Dollar.</p>
+				<div id="graphTopic" align ="center">
+					{{ graph4|safe }}
+				</div>
+				<p class = "lead" ><b> Looks like the US dollar is on a downward trend as well, but it's drop isn't as drastic as Bitcoin's. 
+					This stability is the reason that people prefer using traditional currencies over Bitcoin. 
+				</b></p>
+				<p> In a book by Ricky W. Griffin called 'Organizational Behavior: Managing People and Organizations', 
+					people have a trait called 'Uncertainty Avoidance', also known as a 'Preference for Stability,' 
+					which is the extent that people will feel threatened by the unknown and prefer to in clear and unambiguous situations. 
+					People continue to invest in the dollar because it is seen as a well known, stable, currency.
+				</p>
+				<iframe scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: static; visibility: visible; display: block; width: 1080px; height: 457px; padding: 0px; border: none; max-width: 100%; min-width: 400px; min-height: 300px; margin-top: 10px; margin-bottom: 10px;" src="https://charts.bitcoin.com/embed/price-volatility"></iframe>
+				<p class = "lead" ><b> This chart by charts.bitcoin.com shows Bitcoin's price volatility. 
+				</b></p>
+				<p> The volatility makes accepting Bitcoin as a currency a big risk for business, as the Bitcoin they receive may not be worth the same tomorrow. This makes it hard to use Bitcoin as it was meant to be used, a currency, because many business don't even accept bitcoin as a form of currency.
+				</p>
+				<button class = "button" onclick="myFunctionArcticles()" style="float: right;"> More </button>
+				<div class="keyword_data">
+					<div id="articles">
+					<p class = "lead" ><b> Here are some news articles about some business that no longer take bitcoin as a currency
+					</b></p>
+					</br>
+					<p> https://coinidol.com/reddit-no-longer-accepts-bitcoin-payments/ Reddit, despite being one of the main hubs of discussion regarding cryptocurrency in https://www.reddit.com/r/CryptoCurrency/, has stopped accepting bitcoin, citing "...the upcoming Coinbase change, combined with some bugs around the Bitcoin payment option that were affecting purchases for certain users..." (Reddit admin @ emoney04) as the reason for the decision.
+					</p>
+					</br>
+					<p> https://www.onmsft.com/news/microsoft-no-longer-accepting-bitcoin-as-form-of-payment Microsoft, one of the largest tech companies in the world, is temporarily no longer accepting Bitcoin as a form of payment. The reason is due to the “unstable state” of the cryptocurrency and worldwide payment system.
+					</p>
+					</br>
+					<p> https://www.telegraph.co.uk/technology/2018/01/11/major-cryptocurrency-conference-no-longer-accepting-bitcoin/ In an ironic twist, even a major cryptocurrency conference for Bitcoin has stopped receiving Bitcoin due to "network congestion and manual processing"
+					</p>
+					</br>
+					<p class = "lead" ><b> This makes bitcoin, as of today, to become 'an unspendable currency', which defeats the whole point of using it in the first place. These events no doubt make it harder for people to invest in bitcoin, causing its price to drop drastically.
+					</b></p>
+					
+					</div>	
+				</div>
+			</div>
+		</div>
+		<a name="question3"></a>
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4">Bitcoin also negatively affects the environment</h1>
+				<img src="{% static 'images\chart.png' %}" alt="effects of bitcoin" width="1080" height="457" style="float: center;">
+				<p class="lead">The digiconomist.com website recently released this graph that gets the estimated energy 
+					consumption that bitcoin mining does. This is because the more you mine, the more electricity you use. 
+					This means that generating more bitcoins literally makes bitcoin a gigantic environmental hazard. 
+					According to the data in the digiconomist site, Visa consumes less energy than Bitcoin overall, 
+					despite Visa having over 10x the amount of transactions per day as compared to bitcoin.
+				</p>
+			</div>
+		</div>
+		<a name="question4"></a>
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4">Does this spell the end for Bitcoin?</h1>
+				<p class="lead">Not quite. A similar trend happened with the dotcom bubble in 
+					America in the late 90's, as a result of the growing popularity of the internet.
+				</p>
+				<img src="{% static 'images\dot-com-bubble.jpg' %}" alt="Graph for dot com" width="1080" height="457" style="float: center;">
+				<p class = "lead" ><b>History repeates itself.</b></p>
+				<p class="lead">The DotComBubble is the hyperinflation of Internet-based company stocks due to 
+					its growing popularity at the time. As you can see, like Bitcoin and other cryptocurrencies 
+					in the market, the stocks of these companies peaked at Y2K then the bubble burst, making the 
+					market crashed. As of right now, the cryptocurrency market is at the same stage of a market crash, 
+					and what follows is the stage of stabalization, where the price of bitcoin would stop falling and it's 
+					value would increase at a steady rate that follows historical trends
+				</p>
+			</div>
+		</div>
+		<a name="conclusion"></a>
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4">Conclusion</h1>
+				<p class="lead">Not only bitcoin, but cryptocurrencies in general have been dropping in price recently. 
+					There are many reasons for this, such as the volatily of the currencies as compared to more traditional 
+					currencies and the environmental impacts mining has on the world, as well as the rising cost of entry to 
+					begin mining. However, this does not mean that you should give up on bitcoin, because as soon as the market 
+					stabilizes, bitcoin's decentralized nature and robust security through blockchain technology would make it a 
+					fine alternative to traditional currency.
+				</p>
+			</div>
+		</div>
+		<footer class="footer">
+			<p><b> References</b></p>
+				<p>Griffin, R. W., Phillips, J. M., & Gully, S. M. (2016). Organizational Behavior: Managing People and Organizations (12th ed.). Cengage Learning.
+				
+				Bitcoin.com
+				
+				Kaggle.com
+				</p>
+				<p> This Application was made by Team HardCode; Zach Marasigan & Kyle Santiago. </p>
+			<a href="#">BACK TO TOP</a>
+			</p>
+		</footer>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script>
+		function init(){
+			window.myFunction();
+			window.myFunctionArcticles();
+		}
+		function myFunction(){
+			var y = document.getElementById("graphTopic2");
+			if (y.style.display === "none"){
+				y.style.display = "block";
+			}
+			else{
+				y.style.display = "none";
+			}
+		}
+		function myFunctionArcticles(){
+			var x = document.getElementById("articles");
+			if (x.style.display === "none"){
+				x.style.display = "block";
+			}
+			else{
+				x.style.display = "none";
+			}
+		}
+		</script>
+	</body>
 </html>
